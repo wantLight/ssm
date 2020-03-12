@@ -73,6 +73,7 @@ public class UserRealm extends AuthorizingRealm {
 		SimpleAuthorizationInfo simpleAuthorizationInfo
 				= new SimpleAuthorizationInfo();
 		simpleAuthorizationInfo.addStringPermissions(permissionValus);
+		simpleAuthorizationInfo.addRole(String.valueOf(sysUser.getRoleId()));
 		return simpleAuthorizationInfo;
 	}
 

@@ -8,6 +8,7 @@ import model.Msg;
 import model.SysPermission;
 import model.SysUser;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import service.SysPermissionService;
@@ -36,6 +37,7 @@ public class SysUserController {
 	@ApiOperation(value = "查询用户",notes = "根据账号和密码查询用户")
 	@GetMapping()
 	@RequiresPermissions("user:select")
+	@RequiresRoles(value={"admin"})
 	public Msg getUser(@ApiParam(defaultValue = "wan2")@RequestParam("account") String account,
 	                   @ApiParam(defaultValue = "123")@RequestParam("password") String password) throws IException {
 		SysUser sysUser = sysUserService.getUser(account, password);
